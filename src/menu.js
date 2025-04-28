@@ -1,5 +1,6 @@
 import { content } from "./index.js";
 
+
 export function loadMenuPage() {
   //header container
   const menuHeader = document.createElement("div");
