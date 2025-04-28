@@ -8,15 +8,45 @@ import catHsOne from "./assets/cat-hs-1.jpg";
 import catHsTwo from "./assets/cat-hs-2.jpg";
 import catHsThree from "./assets/cat-hs-3.jpg";
 import catHsFour from "./assets/cat-hs-4.jpg";
+import {loadMenuPage} from "./menu.js";
 
 // const img = document.createElement('img');
 // img.src = pfp;
 // img.alt = 'Profile Picture';
 // document.body.appendChild(img);
 
-function loadHomePage() {
-  const content = document.getElementById("content");
+export const content = document.getElementById("content");
 
+const homeBtn = document.querySelector(".homeBtn");
+const menuBtn = document.querySelector(".menuBtn");
+const contactBtn = document.querySelector(".contactBtn");
+
+
+//event listeners
+homeBtn.addEventListener("click", () => {
+  content.innerHTML = "";
+  homeBtn.classList.add("active");
+  menuBtn.classList.remove("active");
+  contactBtn.classList.remove("active");
+  loadHomePage();
+});
+
+menuBtn.addEventListener("click", () => {
+  menuBtn.classList.add("active");
+  homeBtn.classList.remove("active");
+  contactBtn.classList.remove("active");
+  content.innerHTML = "";
+  loadMenuPage();
+});
+
+contactBtn.addEventListener("click", () => {
+  contactBtn.classList.add("active");
+  homeBtn.classList.remove("active");
+  menuBtn.classList.remove("active");
+  content.innerHTML = "";
+});
+
+function loadHomePage() {
   // container divs
   const firstContainer = document.createElement("div");
   firstContainer.className = "first-container";
@@ -44,6 +74,7 @@ function loadHomePage() {
   const welcome = document.createElement("div");
   welcome.className = "welcome";
   const welcomeText = document.createElement("span");
+  welcomeText.className = "welcome-msg"
   welcomeText.textContent = "Welcome to Whiskers & Brews";
   welcome.appendChild(welcomeText);
 
@@ -102,6 +133,7 @@ function loadHomePage() {
     time.appendChild(daysText);
 
     const timeText = document.createElement("span");
+    timeText.className = "hours-open"
     timeText.textContent = "6am - 8pm";
     time.appendChild(timeText);
 
@@ -158,6 +190,11 @@ function loadHomePage() {
 
   fifthContainer.appendChild(meetDiv);
   fifthContainer.appendChild(catPicContainer);
+
+  //when the loadHomePage function is initialized, the home tab button will be highlighted
+  homeBtn.classList.add("active");
 }
 
+
+//loads the home page by default`   
 loadHomePage();
